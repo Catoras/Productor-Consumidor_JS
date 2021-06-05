@@ -1,7 +1,9 @@
 const contenedor = [];
+const contenedorAntiguo = [];
 let indiceConsumidor = 0;
 let indiceProductor = 0;
 let intervaloProcesamiento;
+
 
 const comportamientoParaEventoKeyDown = (event) => {
   if ( event.isComposing || event.code === "Escape") {
@@ -102,12 +104,12 @@ function resetearVariables () {
 
 
 
-
 function run () {
   for ( let i = 0 ; i < 20 ; i++ ) {
     contenedor[i] = new Elemento();
+    contenedorAntiguo[i] = '0';
   }
-
+  procesamiento();
   intervaloProcesamiento = window.setInterval(procesamiento, 1000);
 
   document.addEventListener("keydown", comportamientoParaEventoKeyDown);
