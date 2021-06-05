@@ -50,35 +50,45 @@ function run () {
     contenedor[i] = new Elemento();
   }
   procesamiento();
-  intervaloProcesamiento = window.setInterval(procesamiento, 1000);
+  intervaloProcesamiento = window.setInterval(procesamiento, 500);
 
   document.addEventListener("keydown", comportamientoParaEventoKeyDown);
 
 }
 
 
-function procesamiento () {
+function procesamiento (condicionAleatoria) {
   if(cantidadRestante == 0) {
-    const condicionAleatoria = numeroAleatorioEntre(1, 5000);
+    condicionAleatoria = isNaN(condicionAleatoria) ? numeroAleatorioEntre(1, 5000) : condicionAleatoria;
     let htmlElementoConsumidor;
     let htmlElementoProductor;
 
     if ( condicionAleatoria % 2 == 1 ) {
       estadoActual = "Consumidor";
 
-      htmlElementoConsumidor = document.getElementById("Consumidor");
-      htmlElementoProductor = document.getElementById("Productor");
+      if ( !todosLosElementosEstanEnEstadoFalso() ) {
+        htmlElementoConsumidor = document.getElementById("Consumidor");
+        htmlElementoProductor = document.getElementById("Productor");
 
-      htmlElementoConsumidor.setAttribute("image","muffin.jpg");
-      htmlElementoProductor.setAttribute("image","empty_muffin.jpg");
+        htmlElementoConsumidor.setAttribute("image","muffin.jpg");
+        htmlElementoProductor.setAttribute("image","empty_muffin.jpg");
+      } else {
+        procesamiento(2);
+        return;
+      }
     } else {
       estadoActual = "Productor";
 
-      htmlElementoConsumidor = document.getElementById("Consumidor");
-      htmlElementoProductor = document.getElementById("Productor");
+      if ( !todosLosElementosEstanEnEstadoVerdadero() ) {
+        htmlElementoConsumidor = document.getElementById("Consumidor");
+        htmlElementoProductor = document.getElementById("Productor");
 
-      htmlElementoConsumidor.setAttribute("image","empty_muffin.jpg");
-      htmlElementoProductor.setAttribute("image","muffin.jpg");
+        htmlElementoConsumidor.setAttribute("image","empty_muffin.jpg");
+        htmlElementoProductor.setAttribute("image","muffin.jpg");
+      } else {
+        procesamiento(1);
+        return;
+      }
     }
 
     htmlElementoProductor.connectedCallback();
@@ -89,8 +99,8 @@ function procesamiento () {
     if(indiceConsumidor == 20) indiceConsumidor = 0;
     if ( todosLosElementosEstanEnEstadoFalso() ) {
       cantidadRestante = 0;
-      return
-    };
+      return;
+    }
 
     contenedor[indiceConsumidor].cambioDeEstado(false);
 
@@ -108,8 +118,8 @@ function procesamiento () {
     if(indiceProductor == 20) indiceProductor = 0;
     if ( todosLosElementosEstanEnEstadoVerdadero() ) {
       cantidadRestante = 0;
-      return
-    };
+      return;
+    }
 
     contenedor[indiceProductor].cambioDeEstado(true);
     let element = document.getElementById(indiceProductor);
@@ -129,5 +139,25 @@ function procesamiento () {
 function stop () {
   clearInterval(intervaloProcesamiento);
   document.removeEventListener("keydown", comportamientoParaEventoKeyDown);
+  openModal();
 }
 
+// Inicio Codigo del Modal
+var modal = document.getElementById('myModal');
+
+function openModal() {
+  modal.style.display = "block";
+  modal.className += "show";
+}
+
+function closeModal() {
+    modal.style.display = "none";
+    modal.className += modal.className.replace("show", "");
+}
+
+window.onclick = function (event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+}
+// Fin Codigo del Modal

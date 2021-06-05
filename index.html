@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
 </head>
-<body class="bg-info">
+<body style="background-color: #fc84bc;">
   <header class="bg-light text-center"><h1 class="">Productor - Consumidor</h1></header>
   <main class="body ">
     <div class="container card">
@@ -48,6 +48,22 @@
       </div>
     </div>
   </main>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="modalProcesoTerminado" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Alerta</h5>
+        </div>
+        <div class="modal-body">
+          Procesamiento Terminado
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick = "closeModal()">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="./v-card.js"></script>
   <script src="./codigo_new.js"></script>
