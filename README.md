@@ -8,10 +8,10 @@ Requerimientos del programa:
 1. Para que el Productor pueda entrar, debe haber espacio en el contenedor.
 1. Para que el Consumidor pueda entrar, debe existir producto.
 1. En la pantalla debe aparecer:
-    a. El contenedor con los espacios claramente marcados y numerados.
-  b. La información del productor, es decir, mostrar si está dormido, trabajando, cuando intente ingresar al contenedor, etc.
-  c. La información del consumidor, dormido, trabajando, cuando intente ingresar, etc.
-  d. Mensajes que indiquen en todo momento, quien está trabajando, o quien intenta trabajar, o si está dormido.
+    - El contenedor con los espacios claramente marcados y numerados.
+    - La información del productor, es decir, mostrar si está dormido, trabajando, cuando intente ingresar al contenedor, etc.
+    - La información del consumidor, dormido, trabajando, cuando intente ingresar, etc.
+    - Mensajes que indiquen en todo momento, quien está trabajando, o quien intenta trabajar, o si está dormido.
 1. Deben manejarse tiempos aleatorios para dormir al productor y al consumidor.
 1. Al “despertar” intentará producir y/o consumir respectivamente, verificando que pueda hacerlo según sus condiciones.
 1. Al entrar al buffer podrán producir y/o consumir de tres a seis elementos en cada entrada.
